@@ -15,6 +15,9 @@ $show_complete_tasks = rand(0, 1);
 
 <body><!--class="overlay"-->
 <h1 class="visually-hidden">Дела в порядке</h1>
+<?php
+$first = "Мой первый переменный"
+?>
 
 <div class="page-wrapper">
     <div class="container container--with-sidebar">
@@ -97,7 +100,7 @@ $show_complete_tasks = rand(0, 1);
 
                     <label class="checkbox">
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input class="checkbox__input visually-hidden show_completed" type="checkbox">
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?= $show_complete_tasks ? 'checked' : '' ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
@@ -118,6 +121,18 @@ $show_complete_tasks = rand(0, 1);
                         <td class="task__date"></td>
                     </tr>
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
+                    <?= $show_complete_tasks ? '<tr class="tasks__item task task--completed">
+                        <td class="task__select">
+                            <label class="checkbox task__checkbox">
+                                <input class="checkbox__input visually-hidden" type="checkbox" checked>
+                                <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
+                            </label>
+                        </td>
+                        <td class="task__date">10.04.2017</td>
+
+                        <td class="task__controls">
+                        </td>
+                    </tr>' : ''?>
                     <tr class="tasks__item task task--completed">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
