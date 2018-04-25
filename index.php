@@ -15,10 +15,6 @@ $show_complete_tasks = rand(0, 1);
 
 <body><!--class="overlay"-->
 <h1 class="visually-hidden">Дела в порядке</h1>
-<?php
-$first = "Мой первый переменный"
-?>
-
 <div class="page-wrapper">
     <div class="container container--with-sidebar">
         <header class="main-header">
