@@ -29,13 +29,13 @@ $tasks = [
     ],
     [
         'task-name' => 'Купить корм для кота',
-        'task-date' => 'Нет',
+        'task-date' => '',
         'task-category' => 'Домашние дела	',
         'task-checked' => false
     ],
     [
         'task-name' => 'Заказать пиццу',
-        'task-date' => 'Нет',
+        'task-date' => '',
         'task-category' => 'Домашние дела',
         'task-checked' => false
     ]
@@ -129,7 +129,7 @@ $tasks = [
                 </div>
 
                 <table class="tasks">
-                    <?php foreach ($tasks as $key => $item):?>
+                    <?php foreach ($tasks as $item):?>
                         <tr class="tasks__item task <?= $item['task-checked'] === true ? 'task--completed':''?>">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
