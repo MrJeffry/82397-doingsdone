@@ -47,7 +47,9 @@ function task_counter($category ,$array_tas) {
     };
     $count = 0;
     foreach ($array_tas as $item) {
-        ($category === $item['task-category']) ? $count++ : '';
+        if ($category === $item['task-category']) {
+            $count++;
+        }
     };
     return $count;
 };
