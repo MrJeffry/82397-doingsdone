@@ -29,18 +29,30 @@ $tasks = [
     ],
     [
         'task-name' => 'Купить корм для кота',
-        'task-date' => 'Нет',
-        'task-category' => 'Домашние дела	',
+        'task-date' => '',
+        'task-category' => 'Домашние дела',
         'task-checked' => false
     ],
     [
         'task-name' => 'Заказать пиццу',
-        'task-date' => 'Нет',
+        'task-date' => '',
         'task-category' => 'Домашние дела',
         'task-checked' => false
     ]
 ];
 
+function task_counter($category ,$array_tas) {
+    if ($category === 'Все') {
+        return count ($array_tas);
+    };
+    $count = 0;
+    foreach ($array_tas as $item) {
+        if ($category === $item['task-category']) {
+            $count++;
+        }
+    };
+    return $count;
+};
 
 ?>
 <!DOCTYPE html>
@@ -92,7 +104,7 @@ $tasks = [
                         while ($step < count($categories)):?>
                             <li class="main-navigation__list-item <?= $step === 0 ? 'main-navigation__list-item--active':''?>">
                                 <a class="main-navigation__list-item-link" href="#"><?=$categories[$step]?></a>
-                                <span class="main-navigation__list-item-count"><?=rand(1,50)?></span>
+                                <span class="main-navigation__list-item-count"><?= task_counter($categories[$step],$tasks) ?></span>
                             </li>
                         <?php
                         $step++;
@@ -129,7 +141,7 @@ $tasks = [
                 </div>
 
                 <table class="tasks">
-                    <?php foreach ($tasks as $key => $item):?>
+                    <?php foreach ($tasks as $item):?>
                         <tr class="tasks__item task <?= $item['task-checked'] === true ? 'task--completed':''?>">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
