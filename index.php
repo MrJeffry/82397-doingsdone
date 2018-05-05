@@ -41,18 +41,15 @@ $tasks = [
     ]
 ];
 
-
-function task_counter($array_cat,$array_tas,$steps) {
+function task_counter($category ,$array_tas) {
+    if ($category === 'Все') {
+        return count ($array_tas);
+    };
     $count = 0;
-    $all_task = 0;
     foreach ($array_tas as $item) {
-        if ($item['task-category'] === $array_cat[$steps]) {
-            $count++;
-        };
+        ($category === $item['task-category']) ? $count++ : '';
     };
     return $count;
-
-
 };
 
 ?>
@@ -105,7 +102,7 @@ function task_counter($array_cat,$array_tas,$steps) {
                         while ($step < count($categories)):?>
                             <li class="main-navigation__list-item <?= $step === 0 ? 'main-navigation__list-item--active':''?>">
                                 <a class="main-navigation__list-item-link" href="#"><?=$categories[$step]?></a>
-                                <span class="main-navigation__list-item-count"><?= task_counter($categories,$tasks,$step) ?></span>
+                                <span class="main-navigation__list-item-count"><?= task_counter($categories[$step],$tasks) ?></span>
                             </li>
                         <?php
                         $step++;
