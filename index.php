@@ -30,7 +30,7 @@ $tasks = [
     [
         'task-name' => 'Купить корм для кота',
         'task-date' => '',
-        'task-category' => 'Домашние дела	',
+        'task-category' => 'Домашние дела',
         'task-checked' => false
     ],
     [
@@ -41,6 +41,19 @@ $tasks = [
     ]
 ];
 
+
+function task_counter($array_cat,$array_tas,$steps) {
+    $count = 0;
+    $all_task = 0;
+    foreach ($array_tas as $item) {
+        if ($item['task-category'] === $array_cat[$steps]) {
+            $count++;
+        };
+    };
+    return $count;
+
+
+};
 
 ?>
 <!DOCTYPE html>
@@ -92,7 +105,7 @@ $tasks = [
                         while ($step < count($categories)):?>
                             <li class="main-navigation__list-item <?= $step === 0 ? 'main-navigation__list-item--active':''?>">
                                 <a class="main-navigation__list-item-link" href="#"><?=$categories[$step]?></a>
-                                <span class="main-navigation__list-item-count"><?=rand(1,50)?></span>
+                                <span class="main-navigation__list-item-count"><?= task_counter($categories,$tasks,$step) ?></span>
                             </li>
                         <?php
                         $step++;
