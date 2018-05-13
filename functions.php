@@ -8,7 +8,7 @@
      * @param array $data - данные бадлона
      * @return string
      */
-    function generate_template(stirng $template_name, array $data) {
+    function generate_template(string $template_name, array $data) {
         $template_path = TEMPLATE_PATH . $template_name . TEMPLATE_EXT;
 
         if (!file_exists($template_path) && (!isset($data))) {
