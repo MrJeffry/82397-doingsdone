@@ -1,3 +1,4 @@
+
 <main class="content__main">
     <h2 class="content__main-heading">Список задач</h2>
 
@@ -29,7 +30,7 @@
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
                     <span class="checkbox__text">
-                        <?= $item['task-name']?>
+                        <?= input_validation($item['task-name'])?>
                     </span>
                 </label>
             </td>
