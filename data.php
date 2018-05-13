@@ -43,4 +43,3 @@
             'task-checked' => false
         ]
     ];
-?>
