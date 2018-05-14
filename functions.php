@@ -1,4 +1,8 @@
 <?php
+    /**
+     * @param string $input - текст названия новой задачи
+     * @return srting
+     */
     function input_validation($input) {
         return htmlspecialchars($input);
     };
@@ -10,11 +14,9 @@
      */
     function generate_template(string $template_name, array $data) {
         $template_path = TEMPLATE_PATH . $template_name . TEMPLATE_EXT;
-
         if (!file_exists($template_path) && (!isset($data))) {
             return '';
         };
-
         ob_start();
         extract($data);
         require_once($template_path);
