@@ -22,3 +22,20 @@
         require_once($template_path);
         return ob_get_clean();
     };
+
+    /**
+     * @param strung $task_date - дата выполнения задачи
+     * @param boolean true если до дедлайна осталось 24 часа или меньше
+     */
+    function set_deadline(string $task_date) {
+        if (empty($task_date)) {
+            return false;
+        }
+        $datetime1 = date_create(date('d.m.Y'));
+        $datetime2 = date_create($task_date);
+
+        $interval = date_diff($datetime1, $datetime2);
+        if ($interval -> d <= 1) {
+            return true;
+        };
+    };

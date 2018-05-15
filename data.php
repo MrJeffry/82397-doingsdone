@@ -1,16 +1,17 @@
 <?php
+    $show_complete_tasks = rand(0, 1);
     $title = 'Дела в порядке';
     $categories= ['Все', 'Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
     $tasks = [
         [
-            'task-name' => 'Задача для решин времени',
-            'task-date' => '15.05.2018',
+            'task-name' => 'Задача для решиния времени',
+            'task-date' => '16.05.2018',
             'task-category' => 'Авто',
             'task-checked' => false
         ],
         [
             'task-name' => 'Собеседование в IT компании',
-            'task-date' => '14.05.2018',
+            'task-date' => '15.05.2018',
             'task-category' => 'Работа',
             'task-checked' => false
         ],

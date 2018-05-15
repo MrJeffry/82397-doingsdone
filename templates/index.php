@@ -1,23 +1,3 @@
-<?php
-$show_complete_tasks = rand(0, 1);
- define('SEC_IN_DAY', 86400);
-
-/**
- * @param strung $task_date - дата выполнения задачи
- * @param boolean true если до дедлайна осталось 24 часа или меньше
- */
-function set_deadline($task_date) {
-    date_default_timezone_set("Europe/Moscow");
-    $current_day_TS = time();
-    $task_date_TS = strtotime($task_date);
-    $days_diff = floor($task_date_TS - $current_day_TS);
-    if (floor($days_diff / SEC_IN_DAY) <= $days_diff) {
-        return true;
-    }
-    return false;
-};
-?>
-
 <main class="content__main">
     <h2 class="content__main-heading">Список задач</h2>
 
