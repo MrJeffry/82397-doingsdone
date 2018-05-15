@@ -24,7 +24,7 @@
     };
 
     /**
-     * @param strung $task_date - дата выполнения задачи
+     * @param string $task_date - дата выполнения задачи
      * @param boolean true если до дедлайна осталось 24 часа или меньше
      */
     function set_deadline(string $task_date) {
