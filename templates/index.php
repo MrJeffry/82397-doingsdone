@@ -24,7 +24,9 @@
 
     <table class="tasks">
         <?php foreach ($tasks as $item):?>
-        <tr class="tasks__item task <?= $item['task-checked'] === true ? 'task--completed':''?>">
+        <tr class="tasks__item task
+        <?= set_deadline($item['task-date']) ? 'task--important' : ''?>
+        <?= $item['task-checked'] === true ? 'task--completed' : '' ?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -39,7 +41,7 @@
             </td>
 
             <td class="task__date">
-                <?= $item['task-date'] ?>
+                <?= $item['task-date']?>
             </td>
         </tr>
         <?php endforeach; ?>
