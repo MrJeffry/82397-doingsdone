@@ -73,6 +73,8 @@ SELECT task_name FROM tasks WHERE user_id = 1
 SELECT task_name FROM tasks WHERE project_id = 5
 
 // Пометить задачу как выполненную
+UPDATE tasks SET finish_date = '2018-05-17'
+WHERE task_id = 8
 
 // Получить все задачи для завтрашнего дня
 SELECT task_name FROM tasks WHERE start_date = '2018-05-18'
