@@ -39,3 +39,17 @@
             return true;
         };
     };
+
+    $db_coonect = mysqli_connect('127.0.0.1', 'root', 'Altigin0210', '82397_doingsdone');
+    mysqli_set_charset($db_coonect, "utf8");
+    $sql = 'SELECT `project_name` FROM `projects`';
+    $db_coonect == false ? print("Ошибка: Невозможно подключиться к MySQL "
+    . mysqli_connect_error()): '';
+
+    $result = mysqli_query($db_coonect, $sql);
+
+    $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    foreach($categories as $key) {
+        print($key['project_name']);
+    };

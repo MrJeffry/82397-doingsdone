@@ -1,6 +1,7 @@
 <?php
 
-function task_counter($category ,$array_tas) {
+
+function task_counter($category, $array_tas) {
     if ($category === 'Все') {
         return count ($array_tas);
     };
@@ -62,8 +63,8 @@ function task_counter($category ,$array_tas) {
                         $step = 0;
                         while ($step < count($categories)):?>
                             <li class="main-navigation__list-item <?= $step === 0 ? 'main-navigation__list-item--active':''?>">
-                                <a class="main-navigation__list-item-link" href="#"><?=$categories[$step]?></a>
-                                <span class="main-navigation__list-item-count"><?= task_counter($categories[$step],$tasks) ?></span>
+                                <a class="main-navigation__list-item-link" href="#"><?=$categories[$step]['project_name']?></a>
+                                <span class="main-navigation__list-item-count"><?= task_counter($categories[$step]['project_name'],$tasks) ?></span>
                             </li>
                         <?php
                         $step++;
