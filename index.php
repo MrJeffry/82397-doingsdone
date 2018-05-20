@@ -2,6 +2,7 @@
     define('TEMPLATE_PATH', './templates/');
     define('TEMPLATE_EXT', '.php');
 
+    require_once('./config.php');
     require_once('./functions.php');
     require_once('./data.php');
 

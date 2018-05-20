@@ -1,4 +1,5 @@
 <?php
+
     /**
      * @param string $input - текст названия новой задачи
      * @return srting
@@ -9,7 +10,7 @@
 
     /**
      * @param string $template_name - название шаблона
-     * @param array $data - данные бадлона
+     * @param array $data - данные шаблона
      * @return string
      */
     function generate_template(string $template_name, array $data) {
@@ -28,6 +29,7 @@
      * @param boolean true если до дедлайна осталось 24 часа или меньше
      */
     function set_deadline(string $task_date) {
+
         if (empty($task_date)) {
             return false;
         }
@@ -35,21 +37,22 @@
         $datetime2 = date_create($task_date);
 
         $interval = date_diff($datetime1, $datetime2);
+        print_r($interval);
         if ($interval -> d <= 1) {
             return true;
         };
     };
 
-    $db_coonect = mysqli_connect('127.0.0.1', 'root', 'Altigin0210', '82397_doingsdone');
-    mysqli_set_charset($db_coonect, "utf8");
-    $sql = 'SELECT `project_name` FROM `projects`';
-    $db_coonect == false ? print("Ошибка: Невозможно подключиться к MySQL "
-    . mysqli_connect_error()): '';
-
-    $result = mysqli_query($db_coonect, $sql);
-
-    $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    foreach($categories as $key) {
-        print($key['project_name']);
-    };
+    /**
+     * @param array $db_param - параметры подключения к базе данных
+     * @param string $query - sql запрос на получение данных из бд
+     */
+    function db_query($db_param, $query)  {
+        $db_coonect = mysqli_connect($db_param['address'], $db_param['login'], $db_param['password'], $db_param['name']);
+        $db_coonect == false ? print("Ошибка: Невозможно подключиться к MySQL "
+        . mysqli_connect_error()): '';
+        mysqli_set_charset($db_coonect, "utf8");
+        $db_query = $query;
+        $query_result = mysqli_query($db_coonect, $db_query);
+        return mysqli_fetch_all($query_result, MYSQLI_ASSOC);
+    }
