@@ -1,12 +1,11 @@
 <?php
 
     function task_counter($category, $array_task) {
-        if ($category === 'Все') {
+        if ($category['project_name'] === 'Все') {
             return count ($array_task);
         };
         $count = 0;
         foreach ($array_task as $item) {
-            print_r($category['project_id']);
             if ($category['project_id'] === $item['project_id']) {
                 $count++;
             }
