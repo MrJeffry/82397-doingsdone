@@ -1,5 +1,26 @@
 <?php
 
+    function task_counter($category, $array_task) {
+        if ($category === 'Все') {
+            return count ($array_task);
+        };
+        $count = 0;
+        foreach ($array_task as $item) {
+            print $item['project_id'];
+            if ($category === $item['project_id']) {
+                $count++;
+            }
+        };
+        return $count;
+    };
+
+    /**
+     * @param string $date - текстовое представление даты
+     */
+    function date_conversions($date) {
+        return date('d.m.Y', strtotime($date));
+    };
+
     /**
      * @param string $input - текст названия новой задачи
      * @return srting
@@ -29,7 +50,6 @@
      * @param boolean true если до дедлайна осталось 24 часа или меньше
      */
     function set_deadline(string $task_date) {
-
         if (empty($task_date)) {
             return false;
         }
@@ -48,11 +68,17 @@
      * @param string $query - sql запрос на получение данных из бд
      */
     function db_query($db_param, $query)  {
-        $db_coonect = mysqli_connect($db_param['address'], $db_param['login'], $db_param['password'], $db_param['name']);
+        $db_coonect = mysqli_connect($db_param['address'], $db_param['login'],
+        $db_param['password'], $db_param['name']);
+
         $db_coonect == false ? print("Ошибка: Невозможно подключиться к MySQL "
         . mysqli_connect_error()): '';
+
         mysqli_set_charset($db_coonect, "utf8");
+
         $db_query = $query;
+
         $query_result = mysqli_query($db_coonect, $db_query);
+
         return mysqli_fetch_all($query_result, MYSQLI_ASSOC);
     }

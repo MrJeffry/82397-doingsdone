@@ -41,7 +41,7 @@
             </td>
 
             <td class="task__date">
-                <?=$item['deadline_date']?>
+                <?= date_conversions($item['deadline_date'])?>
             </td>
         </tr>
         <?php endforeach; ?>
