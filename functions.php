@@ -6,8 +6,8 @@
         };
         $count = 0;
         foreach ($array_task as $item) {
-            print $item['project_id'];
-            if ($category === $item['project_id']) {
+            print_r($category['project_id']);
+            if ($category['project_id'] === $item['project_id']) {
                 $count++;
             }
         };

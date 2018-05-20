@@ -7,5 +7,5 @@ $db_connect = [
     'name' => '82397_doingsdone'
 ];
 
-$categories_query = 'SELECT `project_name` FROM `projects`';
+$categories_query = 'SELECT * FROM `projects`';
 $task_query = 'SELECT * FROM `tasks`';
