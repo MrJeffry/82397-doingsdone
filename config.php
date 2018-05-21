@@ -7,5 +7,8 @@ $db_connect = [
     'name' => '82397_doingsdone'
 ];
 
-$categories_query = 'SELECT * FROM `projects`';
-$task_query = 'SELECT * FROM `tasks`';
+
+$categories_query = 'SELECT `project_id`, `project_name` FROM `projects`';
+$task_query = 'SELECT `task_name`, `finish_date`, `deadline_date`, `project_id` FROM `tasks` WHERE `user_id` = 1';
+
+// Сделать отдельный файл функции которая будет возвращать текст запроса
