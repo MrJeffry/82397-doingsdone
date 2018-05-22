@@ -95,7 +95,8 @@
      * @return string - возвращает строку запроса для получения данных пользователя
      */
     function get_tasks_by_user($id) {
-        return "SELECT `task_name`, `finish_date`, `deadline_date`, `project_id` FROM `tasks` WHERE `user_id` = '$id'";
+        return "SELECT tasks.task_name, tasks.finish_date, tasks.deadline_date,
+        tasks.project_id FROM tasks WHERE tasks.user_id = '$id'";
     };
 
     /**
@@ -103,6 +104,6 @@
      * @return string - возвращает строку запроса для получения данных пользователя
      */
     function get_categories_by_user($id) {
-        return "SELECT `project_id`, `project_name` FROM `projects` WHERE `user_id` = '$id'";
+        return "SELECT projects.project_id, projects.project_name FROM projects WHERE projects.user_id = '$id'";
     };
 
