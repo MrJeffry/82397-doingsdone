@@ -1,5 +1,8 @@
 <?php
-
+    /**
+     * @param array $category - массив категорий задач
+     * @param array $array_task - массив задач
+     */
     function task_counter($category, $array_task) {
         if ($category['project_name'] === 'Все') {
             return count ($array_task);
@@ -75,9 +78,31 @@
 
         mysqli_set_charset($db_coonect, "utf8");
 
-        $db_query = $query;
-
-        $query_result = mysqli_query($db_coonect, $db_query);
+        $query_result = mysqli_query($db_coonect, $query);
 
         return mysqli_fetch_all($query_result, MYSQLI_ASSOC);
     }
+
+    /**
+     * @return string - возвращает строку запроса для получения пользователей
+     */
+    function get_users() {
+        return "SELECT `user_id`, `user_name` FROM `users`";
+    };
+
+    /**
+     * @param string - $id - id пользователя для которого нужно получить данные
+     * @return string - возвращает строку запроса для получения данных пользователя
+     */
+    function get_tasks_by_user($id) {
+        return "SELECT `task_name`, `finish_date`, `deadline_date`, `project_id` FROM `tasks` WHERE `user_id` = '$id'";
+    };
+
+    /**
+     * @param string - $id - id пользователя для которого нужно получить данные
+     * @return string - возвращает строку запроса для получения данных пользователя
+     */
+    function get_categories_by_user($id) {
+        return "SELECT `project_id`, `project_name` FROM `projects` WHERE `user_id` = '$id'";
+    };
+
