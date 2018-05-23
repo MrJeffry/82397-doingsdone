@@ -109,3 +109,15 @@
         return "SELECT projects.project_id, projects.project_name FROM projects WHERE projects.user_id = '$id'";
     };
 
+    function get_task_by_categories_and_user($project_categories_id, $user_id) {
+        return "SELECT tasks.task_name, tasks.finish_date, tasks.deadline_date,
+        tasks.project_id FROM tasks WHERE tasks.project_id = '$project_categories_id' && '$user_id'";
+    }
+
+    function get_task($project_id, $user_id) {
+    if ($project_id['categories'] == '2' && sizeof($project_id)) {
+        return get_tasks_by_user($user_id);
+        } else {
+            return get_task_by_categories_and_user($project_id['categories'], $user_id);
+        }
+    };

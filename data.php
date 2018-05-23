@@ -4,5 +4,4 @@
 
     $users = db_query($db_connect, get_users());
     $categories = db_query($db_connect, get_categories_by_user($users[0]['user_id']));
-    $tasks = db_query($db_connect, get_tasks_by_user($users[0]['user_id']));
-
+    $tasks = db_query($db_connect, get_task($_GET,$users[0]['user_id']));
