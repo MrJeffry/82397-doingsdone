@@ -70,6 +70,7 @@
      * @param string $query sql запрос на получение данных из бд
      */
     function db_query($db_param, $query)  {
+
         $db_coonect = mysqli_connect($db_param['address'], $db_param['login'],
         $db_param['password'], $db_param['name']);
 
@@ -79,7 +80,6 @@
         mysqli_set_charset($db_coonect, "utf8");
 
         $query_result = mysqli_query($db_coonect, $query);
-
         return mysqli_fetch_all($query_result, MYSQLI_ASSOC);
     }
 
@@ -115,9 +115,9 @@
     }
 
     function get_task($project_id, $user_id) {
-    if ($project_id['categories'] == '2' && sizeof($project_id)) {
+    if (empty($project_id) || $project_id == '2') {
         return get_tasks_by_user($user_id);
         } else {
-            return get_task_by_categories_and_user($project_id['categories'], $user_id);
+            return get_task_by_categories_and_user($project_id, $user_id);
         }
     };
