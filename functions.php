@@ -112,7 +112,7 @@
     function get_task_by_categories_and_user($project_categories_id, $user_id) {
         return "SELECT tasks.task_name, tasks.finish_date, tasks.deadline_date,
         tasks.project_id FROM tasks WHERE tasks.project_id = '$project_categories_id' && '$user_id'";
-    }
+    };
 
     function get_task($project_id, $user_id) {
     if (empty($project_id) || $project_id == '2') {
@@ -120,4 +120,14 @@
         } else {
             return get_task_by_categories_and_user($project_id, $user_id);
         }
+    };
+
+    function is_valid_project_id($project_id, $projects) {
+        $result = false;
+        foreach ($projects as $value) {
+            if (intval($value['project_id']) === intval($project_id)) {
+                return true;
+            }
+        }
+        return $result;
     };
