@@ -109,11 +109,21 @@
         return "SELECT projects.project_id, projects.project_name FROM projects WHERE projects.user_id = '$id'";
     };
 
+    /**
+     * @param mixed $project_categories_id категории проекта
+     * @param mixed $user_id пользователя для которого нужно получить данные
+     * @return string возвращает строку запроса для получения категорий пользователя
+     */
     function get_task_by_categories_and_user($project_categories_id, $user_id) {
         return "SELECT tasks.task_name, tasks.finish_date, tasks.deadline_date,
         tasks.project_id FROM tasks WHERE tasks.project_id = '$project_categories_id' && '$user_id'";
     };
 
+     /**
+     * @param number $url - текущий урл
+     * @param number $user_id - айди пользователя
+     * @return string запрос в зависимоти от условия
+     */
     function get_task($project_id, $user_id) {
     if (empty($project_id) || $project_id == '2') {
         return get_tasks_by_user($user_id);
@@ -122,6 +132,11 @@
         }
     };
 
+    /**
+     * @param number $url - текущий урл
+     * @param number $projects - айди проекта
+     * @return boolean равен ли текущий урл айди проектапроекту
+     */
     function is_valid_project_id($project_id, $projects) {
         $result = false;
         foreach ($projects as $value) {
@@ -130,4 +145,17 @@
             }
         }
         return $result;
+    };
+
+    /**
+     * @param number $url - текущий урл
+     * @param number $gategorise_id - текущая активная категория
+     * @return string класс для выделения активного пункта меню
+     */
+    function get_active_categories($url, $gategorise_id) {
+       $active_categorise_class = '';
+       if (intval($url) === intval($gategorise_id)) {
+        $active_categorise_class = 'main-navigation__list-item--active';
+       };
+        return $active_categorise_class;
     };

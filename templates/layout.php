@@ -45,7 +45,7 @@
                         <?php
                         $step = 0;
                         while ($step < count($categories)):?>
-                            <li class="main-navigation__list-item <?= $step === 0 ? 'main-navigation__list-item--active':''?>">
+                            <li class="main-navigation__list-item <?= get_active_categories($project_id, $categories[$step]['project_id']) ?>">
                                 <a class="main-navigation__list-item-link" href="/?categories=<?= $categories[$step]['project_id']?>"><?=$categories[$step]['project_name']?></a>
                                 <span class="main-navigation__list-item-count"><?= task_counter($categories[$step],$tasks) ?></span>
                             </li>
