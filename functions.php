@@ -156,6 +156,8 @@
        $active_categorise_class = '';
        if (intval($url) === intval($gategorise_id)) {
         $active_categorise_class = 'main-navigation__list-item--active';
-       };
+       } else {
+
+       }
         return $active_categorise_class;
     };
