@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //     $new_task_date = date("Y-m-d H:i:s", strtotime($_POST['date']));
     // }
 
+
     $required = ['name', 'project'];
 
     $dict = [
