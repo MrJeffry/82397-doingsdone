@@ -11,5 +11,4 @@
         http_response_code(404);
         die('Запрашиваемая страница не найдена! Ошибка 404');
     };
-
     $tasks = db_query($db_connect, get_task($project_id,$users[0]['user_id']));

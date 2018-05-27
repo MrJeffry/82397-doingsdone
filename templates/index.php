@@ -45,7 +45,6 @@
             </td>
         </tr>
         <?php endforeach; ?>
-
     </table>
 </main>
 

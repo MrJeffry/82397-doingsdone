@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/flatpickr.min.css">
 </head>
 
-<body><!--class="overlay"-->
+<body class="<?= $errors ? 'overlay' : '' ?>">
 <h1 class="visually-hidden">Дела в порядке</h1>
 <div class="page-wrapper">
     <div class="container container--with-sidebar">
@@ -45,9 +45,13 @@
                         <?php
                         $step = 0;
                         while ($step < count($categories)):?>
-                            <li class="main-navigation__list-item <?= $step === 0 ? 'main-navigation__list-item--active':''?>">
+                        <?php if ($project_id === 0):?>
+                            <li class="main-navigation__list-item <?= $step === 0 ? 'main-navigation__list-item--active' : '' ?>">
+                        <?php else: ?>
+                            <li class="main-navigation__list-item <?= get_active_categories($project_id, $categories[$step]['project_id']); ?>">
+                        <?php endif; ?>
                                 <a class="main-navigation__list-item-link" href="/?categories=<?= $categories[$step]['project_id']?>"><?=$categories[$step]['project_name']?></a>
-                                <span class="main-navigation__list-item-count"><?= task_counter($categories[$step],$tasks) ?></span>
+                                    <span class="main-navigation__list-item-count"><?= task_counter($categories[$step],$tasks) ?></span>
                             </li>
                         <?php
                         $step++;
@@ -105,5 +109,6 @@
 
 <script src="flatpickr.js"></script>
 <script src="script.js"></script>
+<?= $modal_task ?>
 </body>
 </html>
