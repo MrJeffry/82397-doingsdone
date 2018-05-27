@@ -7,7 +7,7 @@ VALUES ('Артем', '123', 'aaltigin@gmail.com');
 
 # Добавить пользователя Игорь
 INSERT INTO users (user_name, password, user_email)
-SET ('Игорь', '123', 'igor@gmail.com');
+VALUES ('Игорь', '123', 'igor@gmail.com');
 
 # Добавим проекты
 INSERT INTO projects

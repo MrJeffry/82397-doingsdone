@@ -17,11 +17,11 @@
 
       <select class="form__input form__input--select <?= isset($errors['project']) ? 'form__input--error' : '' ?>" name="project" id="project">
         <option value="" selected>Выберите проект</option>
-      <?php foreach ($categories as $value ): ?>
-          <option value="<?= $value['project_id']?>"><?= $value['project_name']?></option>
-      <?php endforeach; ?>
+    <?php foreach ($categories as $value ): ?>
+        <option value="<?= $value['project_id']?>"><?= $value['project_name']?></option>
+    <?php endforeach; ?>
       </select>
-      <?php if (isset($errors['project'])): ?>
+    <?php if (isset($errors['project'])): ?>
         <p class="form__message"><?= $errors['project'] ?></p>
     <?php endif; ?>
     </div>

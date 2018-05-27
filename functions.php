@@ -80,8 +80,30 @@
         mysqli_set_charset($db_coonect, "utf8");
 
         $query_result = mysqli_query($db_coonect, $query);
+        if (!isset($query_result)) {
+            $error = mysqli_error($db_coonect);
+            print("Ошибка MySQL: " . $error);
+        }
         return mysqli_fetch_all($query_result, MYSQLI_ASSOC);
     }
+
+    // function db_update($db_param, $query) {
+    //     print($query);
+    //     $db_coonect = mysqli_connect($db_param['address'], $db_param['login'],
+    //     $db_param['password'], $db_param['name']);
+
+    //     $db_coonect == false ? print("Ошибка: Невозможно подключиться к MySQL "
+    //     . mysqli_connect_error()): '';
+
+    //     mysqli_set_charset($db_coonect, "utf8");
+
+    //     $query_result = mysqli_query($db_coonect, $query);
+
+    //     if ($query_result == false) {
+    //         print("Произошла ошибка при выполнении запроса");
+    //         var_dump($query_result);
+    //     }
+    // };
 
     /**
      * @return string возвращает строку запроса для получения пользователей
@@ -160,4 +182,9 @@
 
        }
         return $active_categorise_class;
+    };
+
+    function set_new_task($task_name, $project_id, $user_id, $deadline_date, $project_completed) {
+        return "INSERT INTO tasks (task_name, project_id, user_id, deadline_date, project_completed)
+        VALUES ('$task_name', $project_id, $user_id, '$deadline_date', $project_completed)";
     };
