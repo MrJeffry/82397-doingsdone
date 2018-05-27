@@ -1,11 +1,21 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $new_task = $_POST;
 
-    $new_task_name = $_POST['name'];
-    $new_task_project = $_POST['project'];
-    $new_task_date = date("Y-m-d H:i:s", strtotime($_POST['date']));
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+    $data['task_name'] = $_POST['name'];
+    $data['project_id'] = intval($_POST['project']);
+    $data['user_id'] = $users[0]['user_id'];
+    $data['start_date'] = date('Y-m-d H:i:s', strtotime("now"));
+    $data['file_path'] = '';
+    $data['project_completed'] = 0;
+
+
+    if (! empty($_POST['date'])) {
+        $data['deadline_date'] = date("Y-m-d H:i:s", strtotime($_POST['date']));
+    }
 
     // $new_task_date = 'NULL';
     // if (!empty($_POST['date'])) {
@@ -40,17 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $path = $_FILES['preview']['name'];
         move_uploaded_file($tmp_name, './' . $path);
         $gif['path'] = $path;
+        $data['file_path'] = $path;
     }
 
     if (!count($errors)) {
-       db_query($db_connect,
-       set_new_task(
-           $new_task_name,
-           $new_task_project,
-           $users[0]['user_id'] ,
-           $new_task_date,
-           0
-        )
-       );
+
+        db_insert($db_connect_handler, 'tasks', $data);
+        header('Location: index.php');
+
     };
 }

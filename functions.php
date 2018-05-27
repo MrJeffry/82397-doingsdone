@@ -1,4 +1,7 @@
 <?php
+
+    require_once 'mysql_helper.php';
+
     /**
      * @param array $category массив категорий задач
      * @param array $array_task массив задач
@@ -20,6 +23,10 @@
      * @param string $date текстовое представление даты
      */
     function date_conversions($date) {
+        if (empty($date)) {
+            return '';
+        }
+
         return date('d.m.Y', strtotime($date));
     };
 
@@ -51,10 +58,11 @@
      * @param string $task_date дата выполнения задачи
      * @param boolean true если до дедлайна осталось 24 часа или меньше
      */
-    function set_deadline(string $task_date) {
+    function set_deadline($task_date) {
         if (empty($task_date)) {
             return false;
         }
+
         $datetime1 = date_create(date('d.m.Y'));
         $datetime2 = date_create($task_date);
 
@@ -185,6 +193,50 @@
     };
 
     function set_new_task($task_name, $project_id, $user_id, $deadline_date, $project_completed) {
-        return "INSERT INTO tasks (task_name, project_id, user_id, deadline_date, project_completed)
-        VALUES ('$task_name', $project_id, $user_id, '$deadline_date', $project_completed)";
+
+        $sql =  "INSERT INTO tasks (task_name, project_id, user_id, deadline_date, project_completed)
+        VALUES ('$task_name', '$project_id', '$user_id', '$deadline_date', '$project_completed')";
+
+        var_dump($sql);
+        die();
+        return $sql;
     };
+
+
+    function db_insert($con, $table_name, $data) {
+        $field_names = [];
+        $values = [];
+        $placeholders = [];
+
+        foreach ($data as $key => $value) {
+            $field_names[] = $key;
+            $values[] = $value;
+            $placeholders[] = '?';
+        }
+        $sql = 'INSERT INTO ' . $table_name . ' (' . implode(", ", $field_names) .' )' . ' VALUES (' . implode(", ", $placeholders) . ')';
+
+        $stmt = db_get_prepare_stmt($con, $sql, $values);
+
+        if (!$stmt) {
+            return false;
+        }
+
+        $result = mysqli_stmt_execute($stmt);
+        if (!$result) {
+            return false;
+        }
+        return mysqli_insert_id($con);
+    }
+
+    function db_select ($con, $query, $data) {
+        $stmt = db_get_prepare_stmt($con, $query, $data);
+        if (!$stmt) {
+            return [];
+        }
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (!$result) {
+            return [];
+        }
+        return get_save_content_for_array(mysqli_fetch_all($result, MYSQLI_ASSOC));
+    }
