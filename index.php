@@ -8,17 +8,18 @@
     require_once('./functions.php');
     require_once('./data.php');
     require_once('./add.php');
+    // require_once('./create_user.php');
 
+    $guest = generate_template('guest', []);
     $modal_task = generate_template('modal-task', [
         'categories' => $categories,
-        'errors' => $errors
+        // Не уверен что это тут нужно, но без весят нотисы
+        'errors' => isset($errors)
     ]);
-
     $content = generate_template('index',[
         'tasks' => $tasks,
         'show_complete_tasks' => $show_complete_tasks
     ]);
-
     $layout = generate_template('layout', [
         'project_id' => $project_id,
         'categories' => $categories,
@@ -26,7 +27,8 @@
         'title' => $title,
         'content' => $content,
         'modal_task' =>  $modal_task,
-        'errors' => $errors
+        // Не уверен что это тут нужно, но без весят нотисы
+        'errors' => isset($errors)
     ]);
 
-    print($layout);
+    print($guest);

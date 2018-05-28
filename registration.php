@@ -1,3 +1,5 @@
+<?php  require_once('./create_user.php'); ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -8,33 +10,57 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body class="body-background"><!--class="overlay"-->
+<body><!--class="overlay"-->
   <h1 class="visually-hidden">Дела в порядке</h1>
 
   <div class="page-wrapper">
-    <div class="container">
+    <div class="container container--with-sidebar">
       <header class="main-header">
-        <a href="/">
+        <a href="#">
           <img src="../img/logo.png" width="153" height="42" alt="Логитип Дела в порядке">
         </a>
-
-        <div class="main-header__side">
-          <a class="main-header__side-item button button--transparent open-modal"  href="javascript:;"
-             target="user_login">Войти</a>
-        </div>
       </header>
 
       <div class="content">
-        <section class="welcome">
-          <h2 class="welcome__heading">«Дела в порядке»</h2>
+        <section class="content__side">
+          <p class="content__side-info">Если у вас уже есть аккаунт, авторизуйтесь на сайте</p>
 
-          <div class="welcome__text">
-            <p>«Дела в порядке» — это веб приложение для удобного ведения списка дел. Сервис помогает пользователям не забывать о предстоящих важных событиях и задачах.</p>
-            <p>После создания аккаунта, пользователь может начать вносить свои дела, деля их по проектам и указывая сроки.</p>
-          </div>
-
-          <a class="welcome__button button" href="#">Зарегистрироваться</a>
+          <a class="button button--transparent content__side-button" href="#">Войти</a>
         </section>
+
+        <main class="content__main">
+          <h2 class="content__main-heading">Регистрация аккаунта</h2>
+
+          <form class="form" action="registration.php" method="post">
+            <div class="form__row">
+              <label class="form__label" for="email">E-mail <sup>*</sup></label>
+
+              <input class="form__input <?= isset($errors['email']) ? 'form__input--error' : '' ?>" type="text" name="email" id="email" value="" placeholder="Введите e-mail">
+
+              <p class="form__message"><?= isset($errors['email']) ? $errors['email']: '' ?></p>
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="password">Пароль <sup>*</sup></label>
+
+              <input class="form__input <?= isset($errors['password']) ? 'form__input--error' : '' ?>" type="password" name="password" id="password" value="" placeholder="Введите пароль">
+              <p class="form__message"><?= isset($errors['password']) ? $errors['password']: '' ?></p>
+            </div>
+
+            <div class="form__row">
+              <label class="form__label" for="name">Имя <sup>*</sup></label>
+
+              <input class="form__input <?= isset($errors['name']) ? 'form__input--error' : '' ?>" type="text" name="name" id="name" value="" placeholder="Введите имя">
+              <p class="form__message"><?= isset($errors['name']) ? $errors['name']: '' ?></p>
+            </div>
+
+            <div class="form__row form__row--controls">
+              <p class="error-message"></p>
+
+              <input class="button" type="submit" name="" value="Зарегистрироваться">
+            </div>
+          </form>
+        </main>
       </div>
     </div>
   </div>
@@ -42,7 +68,7 @@
   <footer class="main-footer">
     <div class="container">
       <div class="main-footer__copyright">
-        <p>© 2018, «Дела в порядке»</p>
+        <p>© 2017, «Дела в порядке»</p>
 
         <p>Веб-приложение для удобного ведения списка дел.</p>
       </div>

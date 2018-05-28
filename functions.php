@@ -95,24 +95,6 @@
         return mysqli_fetch_all($query_result, MYSQLI_ASSOC);
     }
 
-    // function db_update($db_param, $query) {
-    //     print($query);
-    //     $db_coonect = mysqli_connect($db_param['address'], $db_param['login'],
-    //     $db_param['password'], $db_param['name']);
-
-    //     $db_coonect == false ? print("Ошибка: Невозможно подключиться к MySQL "
-    //     . mysqli_connect_error()): '';
-
-    //     mysqli_set_charset($db_coonect, "utf8");
-
-    //     $query_result = mysqli_query($db_coonect, $query);
-
-    //     if ($query_result == false) {
-    //         print("Произошла ошибка при выполнении запроса");
-    //         var_dump($query_result);
-    //     }
-    // };
-
     /**
      * @return string возвращает строку запроса для получения пользователей
      */
@@ -214,6 +196,8 @@
             $placeholders[] = '?';
         }
         $sql = 'INSERT INTO ' . $table_name . ' (' . implode(", ", $field_names) .' )' . ' VALUES (' . implode(", ", $placeholders) . ')';
+
+        mysqli_set_charset($con, "utf8");
 
         $stmt = db_get_prepare_stmt($con, $sql, $values);
 
