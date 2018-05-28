@@ -1,4 +1,5 @@
 <?php
+require_once('./init.php');
 require_once('./functions.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -34,6 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (!count($errors)) {
-        db_insert($db_connect_handler, 'tasks', $data);
+        db_insert($db_connect_handler, 'users', $data);
     };
 }
