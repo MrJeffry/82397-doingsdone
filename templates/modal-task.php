@@ -8,7 +8,7 @@
       <label class="form__label" for="name">Название <sup>*</sup></label>
       <input class="form__input <?= isset($errors['name']) ? 'form__input--error' : '' ?>" type="text" name="name" id="name" value="" placeholder="Введите название">
     <?php if (isset($errors['name'])): ?>
-        <p class="form__message"><?= $errors['name'] ?></p>
+        <p class="form__message"><?= isset($errors['name']) ?></p>
     <?php endif; ?>
     </div>
 
@@ -22,7 +22,7 @@
     <?php endforeach; ?>
       </select>
     <?php if (isset($errors['project'])): ?>
-        <p class="form__message"><?= $errors['project'] ?></p>
+        <p class="form__message"><?= isset($errors['project']) ?></p>
     <?php endif; ?>
     </div>
 

@@ -1,9 +1,6 @@
 <?php
 
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
 
     $data['task_name'] = $_POST['name'];
     $data['project_id'] = intval($_POST['project']);
@@ -16,12 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (! empty($_POST['date'])) {
         $data['deadline_date'] = date("Y-m-d H:i:s", strtotime($_POST['date']));
     }
-
-    // $new_task_date = 'NULL';
-    // if (!empty($_POST['date'])) {
-    //     $new_task_date = date("Y-m-d H:i:s", strtotime($_POST['date']));
-    // }
-
 
     $required = ['name', 'project'];
 
@@ -54,9 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (!count($errors)) {
-
         db_insert($db_connect_handler, 'tasks', $data);
         header('Location: index.php');
-
     };
 }
